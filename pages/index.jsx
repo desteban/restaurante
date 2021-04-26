@@ -139,7 +139,7 @@ export default function Home() {
 				}
 			`}</style>
 
-			<h1>Index</h1>
+			<h1 className="center">Il Ristorante</h1>
 			<div className="masonry">
 				{imagenes.map((plato) => {
 					return (
