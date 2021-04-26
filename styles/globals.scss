@@ -1,0 +1,110 @@
+@import "../node_modules/material-design-icons/iconfont/material-icons.css";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  color: #0070f3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.contenido {
+  margin: 0px 5% 0px 5%;
+}
+
+$principal: rgb(36, 56, 255);
+$secundario: rgb(23, 164, 255);
+$label: rgba(0, 116, 217, 0.2);
+$letrabtn: rgb(255, 255, 255);
+$sombra: rgb(128, 126, 121);
+$fondo: rgb(255, 255, 255);
+$link: rgb(38, 178, 255);
+$texto_titulo: 2em;
+$texto_contenido: 1em;
+
+.header {
+  height: 50px;
+  border-bottom: 1px solid #eaeaea;
+  background: #eaeaea;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right {
+  display: inline-block;
+  text-align: right;
+  vertical-align: bottom;
+  width: 24;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+}
+
+h3 {
+  font-size: 1.9rem;
+}
+
+h4 {
+  font-size: 1.56rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+small {
+  font-size: 0.85rem;
+}
+
+.gold {
+  color: gold;
+}
+
+.centro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1.center {
+  text-align: center;
+}
+
+.primary-color {
+  /* color */
+}
+
+.primary-color-light {
+}
+
+.primary-color-dark {
+}
+
+.secondary-color {
+}
+
+@import "./card.scss";
+@import "./resenas.scss";
+@import "./formularios.scss";

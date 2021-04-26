@@ -1,0 +1,28 @@
+.resenas {
+  border-top: 1px $sombra solid;
+  padding: 0rem 8%;
+  margin-bottom: 2rem;
+  margin: 0 2rem 2rem 2rem;
+
+  .cabecera {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .titulo {
+    font-size: 1.5rem;
+    margin: 1rem 0px;
+  }
+
+  .item {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px rgb(180, 179, 176) solid;
+  }
+
+  .cabecera-item {
+  }
+
+  .titulo-item {
+    font-weight: bold;
+  }
+}

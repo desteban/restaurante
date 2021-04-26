@@ -1,0 +1,36 @@
+input {
+  border: none;
+  border: 1px solid #aaaaaa;
+  // border-bottom: 1px solid #aaaaaa;
+  border-radius: 1rem;
+  outline: none;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+label {
+  margin-right: 1rem;
+}
+
+div.input {
+  margin-top: 1rem;
+  padding: 0.5rem;
+}
+
+select {
+  border: 1px solid #aaaaaa;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.input {
+  margin: 0.5rem 0px;
+}
+
+.send {
+  margin: auto;
+  padding: 0.3rem 0.5rem;
+  border-radius: 1rem;
+  border: none;
+}
