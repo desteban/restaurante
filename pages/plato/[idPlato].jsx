@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Resena from '../../components/resena';
 import Link from 'next/link';
+import Footer from '../../components/footer';
 
 const plato = () => {
 	const router = useRouter();
@@ -183,18 +184,10 @@ const plato = () => {
 					</div>
 					<Resena nombre={'David'} rate={4.5} texto="Bueno" />
 					<Resena />
-					<Resena />
-					<Resena />
-					<Resena />
 				</div>
 			</main>
 
-			<footer className="footer">
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium officia
-					iure ab ex. Ratione voluptas modi
-				</p>
-			</footer>
+			<Footer />
 		</div>
 	);
 };

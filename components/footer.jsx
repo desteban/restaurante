@@ -68,11 +68,7 @@ export default function footer() {
 					</li>
 
 					<li>
-						<img
-							src="https://www.flaticon.com/svg/vstatic/svg/1384/1384031.svg?token=exp=1620059631~hmac=c99d52e188e64bd0a4cbc99c563549ef"
-							alt="instagram"
-							className="logo"
-						/>
+						<img src="/instagram.svg" alt="instagram" className="logo" />
 					</li>
 				</ul>
 			</div>

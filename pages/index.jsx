@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Footer from '../components/footer';
+import Menu from '../components/menu';
 
 export default function Home() {
 	const imagenes = [
@@ -137,29 +138,33 @@ export default function Home() {
 				}
 			`}</style>
 
-			<h1 className="center">Il Ristorante</h1>
-			<div className="menu">
-				{imagenes.map((plato) => {
-					return (
-						<Link href={`/plato/${plato.nombre}`} key={plato.nombre}>
-							<a>
-								<div className="card_menu">
-									<div className="imagen">
-										<img src={plato.src} alt={plato.nombre} />
+			<Menu />
+
+			<main>
+				<h1 className="center">Il Ristorante</h1>
+				<div className="menu">
+					{imagenes.map((plato) => {
+						return (
+							<Link href={`/plato/${plato.nombre}`} key={plato.nombre}>
+								<a>
+									<div className="card_menu">
+										<div className="imagen">
+											<img src={plato.src} alt={plato.nombre} />
+										</div>
+										<div className="contenido">
+											<h3 className="titulo">
+												{plato.nombre}{' '}
+												<span className="precio"> ${plato.precio} </span>
+											</h3>
+											<p className="descripcion">{plato.descripcion}</p>
+										</div>
 									</div>
-									<div className="contenido">
-										<h3 className="titulo">
-											{plato.nombre}{' '}
-											<span className="precio"> ${plato.precio} </span>
-										</h3>
-										<p className="descripcion">{plato.descripcion}</p>
-									</div>
-								</div>
-							</a>
-						</Link>
-					);
-				})}
-			</div>
+								</a>
+							</Link>
+						);
+					})}
+				</div>
+			</main>
 
 			<Footer />
 		</div>
