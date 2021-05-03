@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
 import Link from 'next/link';
+import Footer from '../components/footer';
 
 export default function Home() {
 	const imagenes = [
@@ -42,7 +42,7 @@ export default function Home() {
 		},
 		{
 			src:
-				'https://images.pexels.com/photos/2097090/pexels-photo-2097090.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+				'https://media.istockphoto.com/photos/fresh-salad-bowl-with-shrimp-tomato-avocado-and-arugula-on-wooden-picture-id967589370?s=612x612',
 			nombre: 'Ensalada',
 			precio: '00.000',
 			descripcion: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo quod nulla'
@@ -141,9 +141,9 @@ export default function Home() {
 			<div className="menu">
 				{imagenes.map((plato) => {
 					return (
-						<Link href={`/plato/${plato.nombre}`}>
+						<Link href={`/plato/${plato.nombre}`} key={plato.nombre}>
 							<a>
-								<div className="card_menu" key={plato.nombre}>
+								<div className="card_menu">
 									<div className="imagen">
 										<img src={plato.src} alt={plato.nombre} />
 									</div>
@@ -160,6 +160,8 @@ export default function Home() {
 					);
 				})}
 			</div>
+
+			<Footer />
 		</div>
 	);
 }

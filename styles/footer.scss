@@ -1,0 +1,57 @@
+.footer {
+	display: grid;
+	background-color: #9d9d9d;
+	padding: 1rem 5%;
+	margin-top: 1rem;
+	gap: 1rem;
+	grid-template-columns: repeat(2, 1fr);
+
+	.titulo {
+		font-size: 1.8rem;
+	}
+
+	.seccion {
+		padding: 0.2rem 0.8rem;
+	}
+
+	.derechos {
+		grid-column: 1/-1;
+		text-align: center;
+	}
+
+	.servicios {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.contacto {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		ul {
+			list-style-type: none;
+		}
+	}
+
+	.logo {
+		height: 24px;
+		width: 24px;
+	}
+}
+
+.descripcion {
+	grid-column: 1/-1;
+}
+
+@media screen and (min-width: 992px) {
+	.footer {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.descripcion {
+		grid-column: 1/2;
+	}
+}
