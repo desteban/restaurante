@@ -1,165 +1,87 @@
-.card {
-  @mixin card {
-    margin: 5px 0px;
-    display: flex;
-    flex-flow: column wrap;
-    margin: 0.5em;
-    transition: all 0.5s;
-    position: relative;
-    text-align: center;
-    overflow: hidden;
-    transition: all 0.4s;
-    box-shadow: 0 5px 5px $sombra;
-    -webkit-box-shadow: 0 5px 5px $sombra;
-    -moz-box-shadow: 0 5px 5px $sombra;
-  }
+.menu {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	gap: 1rem;
+}
 
-  @mixin title {
-    font-weight: bold;
-    font-size: $texto_titulo;
-    padding: 5px 15px;
-    transition: all 0.4s;
-  }
+.card_menu {
+	grid-column: 1/2;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 1rem;
+	margin: 0.5rem 1rem;
+	padding: 0.5rem;
+	border-radius: 1rem;
+	border: lightgray solid 2px;
+	color: black;
 
-  @mixin contenidoCard {
-    .head img {
-      position: relative;
-      display: inline-block;
-      width: 100%;
-      height: auto;
-      transition: all 0.4s;
-    }
+	.imagen {
+		grid-column: 1/3;
+		display: flex;
+		// justify-content: center;
+		align-items: center;
 
-    .title-flo {
-      position: absolute;
-      top: 20px;
-      left: 0px;
-      background-color: rgba(255, 255, 255, 0);
-      @include title();
-    }
+		img {
+			height: 130px;
+			width: 200px;
+			object-fit: cover;
+		}
+	}
 
-    .title {
-      @include title();
-    }
+	.contenido {
+		grid-column: 3/-1;
+	}
 
-    .content {
-      padding: 10px;
-      font-size: $texto_contenido;
-      transition: all 0.4s;
-      .options {
-        border-top: 1px solid lightgray;
-        padding: 5px;
-      }
-    }
-  }
+	.titulo {
+		margin: 0px;
+		font-size: 1.5rem;
+	}
+}
 
-  @mixin card_hover {
-    box-shadow: 10px 10px 20px $sombra;
-  }
+@media screen and (min-width: 600px) {
+	.menu {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.3rem;
+		padding: 0px 5%;
+	}
 
-  @mixin ImgTransform {
-    img {
-      transform: scale(1.2);
-    }
+	.card_menu {
+		margin: 0.5rem 0.8rem;
+	}
+}
 
-    .content {
-      margin-top: 1em;
-    }
-  }
+@media screen and (min-width: 992px) {
+	.menu {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.3rem;
+		padding: 0px 5%;
+	}
 
-  //------------------ card default --------------------
-  @include card();
-  @include contenidoCard();
-
-  .head img {
-    width: 100%;
-  }
-  //------------------ /card default --------------------
-
-  &_radius {
-    @include card();
-    border-radius: 1em;
-
-    @include contenidoCard();
-    .content {
-      padding: 0px 10px;
-    }
-  }
-
-  &:hover {
-    border-radius: 1em;
-    @include card_hover();
-    @include ImgTransform();
-  }
-
-  &_radius:hover {
-    @include card_hover();
-    @include ImgTransform();
-  }
-
-  //masonry
-  @media screen and (min-width: 992px) {
-    &_hover {
-      margin: 5px 2px;
-      position: relative;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-        transition: all 0.5s;
-      }
-
-      .hover_content {
-        position: absolute;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0);
-        padding: 0.5em;
-        color: rgb(255, 255, 255);
-        transform: translateY(100%);
-        transition: all 0.5s;
-
-        .title {
-          background: rgba(0, 0, 0, 0);
-          font-size: 1.2em;
-        }
-
-        .hover_text {
-          background: rgba(0, 0, 0, 0);
-          font-size: 0.9em;
-        }
-      }
-    }
-
-    &_hover:hover .hover_content {
-      transform: translateY(0%);
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    &_hover:hover img {
-      transform: scale(1.2);
-    }
-  }
+	.card_menu {
+		margin: 0.5rem 0.8rem;
+	}
 }
 
 //------------------------------- PANEL ----------------------------------------
 
 @mixin panel {
-  padding: 1em;
-  border-radius: 1em;
-  margin: 0.3em;
+	padding: 1em;
+	border-radius: 1em;
+	margin: 0.3em;
 }
 
 .panel {
-  background: $secundario;
-  @include panel();
+	background: $secundario;
+	@include panel();
 
-  &-warning {
-    @include panel();
-    background: rgb(255, 243, 64);
-  }
+	&-warning {
+		@include panel();
+		background: rgb(255, 243, 64);
+	}
 
-  &-error {
-    @include panel();
-    background: rgb(255, 43, 36);
-  }
+	&-error {
+		@include panel();
+		background: rgb(255, 43, 36);
+	}
 }

@@ -17,8 +17,7 @@ export default function Home() {
 			descripcion: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo quod nulla'
 		},
 		{
-			src:
-				'https://images.pexels.com/photos/357573/pexels-photo-357573.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
+			src: 'https://cdn.pixabay.com/photo/2017/05/07/08/56/pancakes-2291908_1280.jpg',
 			nombre: 'pancakes',
 			precio: '00.000',
 			descripcion: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo quod nulla'
@@ -30,8 +29,7 @@ export default function Home() {
 			descripcion: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo quod nulla'
 		},
 		{
-			src:
-				'https://images.pexels.com/photos/604969/pexels-photo-604969.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+			src: 'https://cdn.pixabay.com/photo/2017/12/10/14/47/pizza-3010062_1280.jpg',
 			nombre: 'Pizza',
 			precio: '00.000',
 			descripcion: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo quod nulla'
@@ -140,25 +138,25 @@ export default function Home() {
 			`}</style>
 
 			<h1 className="center">Il Ristorante</h1>
-			<div className="masonry">
+			<div className="menu">
 				{imagenes.map((plato) => {
 					return (
-						<div className="item card_hover" key={plato.nombre}>
-							<Link href={`/plato/${plato.nombre}`}>
-								<a>
+						<Link href={`/plato/${plato.nombre}`}>
+							<a>
+								<div className="card_menu" key={plato.nombre}>
 									<div className="imagen">
 										<img src={plato.src} alt={plato.nombre} />
 									</div>
-									<div className="contenido hover_content">
+									<div className="contenido">
 										<h3 className="titulo">
 											{plato.nombre}{' '}
 											<span className="precio"> ${plato.precio} </span>
 										</h3>
 										<p className="descripcion">{plato.descripcion}</p>
 									</div>
-								</a>
-							</Link>
-						</div>
+								</div>
+							</a>
+						</Link>
 					);
 				})}
 			</div>
