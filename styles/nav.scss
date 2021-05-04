@@ -1,0 +1,110 @@
+.nav {
+	background: red;
+	display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	height: 64px;
+
+	.logo {
+		font-size: 1.2rem;
+		font-family: 'Rock Salt', cursive;
+	}
+
+	.burger {
+		position: absolute;
+		cursor: pointer;
+		right: 0;
+		margin: 0px 1rem;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.nav-opciones {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 992px) {
+	.nav {
+		background-color: blue;
+		padding: 0px 2rem;
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	.burger {
+		display: none;
+	}
+
+	.brand {
+		grid-column: 1/2;
+	}
+
+	.nav-opciones {
+		display: block;
+		grid-column: 2/-1;
+		display: flex;
+		justify-content: flex-end;
+		color: black;
+
+		.item-nav {
+			margin: 0px 1rem;
+			color: black;
+			transition: all 0.4s;
+		}
+	}
+}
+
+.fixed {
+	position: fixed;
+	width: 100%;
+	top: 0;
+}
+
+// .nav {
+// 	background-color: red;
+// 	height: 64px;
+// 	position: relative;
+// 	display: flex;
+// 	align-items: center;
+// 	justify-content: center;
+
+// 	.burger {
+// 		position: absolute;
+// 		cursor: pointer;
+// 		right: 0;
+// 		margin: 0px 1rem;
+// 	}
+
+// 	.logo {
+// 		font-size: 1.2rem;
+// 		font-family: 'Rock Salt', cursive;
+// 	}
+
+// 	.ul {
+// 		display: flex;
+// 	}
+
+// 	.nav-opciones {
+// 	}
+// }
+
+// @media screen and (min-width: 992px) {
+// 	.nav {
+// 		justify-content: space-between;
+// 		background: blue;
+// 		padding: 0px 2rem;
+// 	}
+
+// 	.burger {
+// 		display: none;
+// 	}
+// }
+
+// @media screen and (max-width: 991px) {
+// 	.nav-opciones {
+// 		display: none;
+// 	}
+// }

@@ -19,7 +19,15 @@ a {
 }
 
 .contenido {
-	margin: 0px 5% 0px 5%;
+	margin: 80px 5% 0px 5%;
+}
+
+main.contenido {
+	margin: 80px 5% 0px 5%;
+}
+
+.espacio {
+	margin-top: 80px;
 }
 
 $principal: rgb(36, 56, 255);
@@ -92,6 +100,10 @@ h1.center {
 	text-align: center;
 }
 
+.black {
+	color: black;
+}
+
 .primary-color {
 	/* color */
 }
@@ -109,3 +121,4 @@ h1.center {
 @import './resenas.scss';
 @import './formularios.scss';
 @import './footer.scss';
+@import './nav.scss';

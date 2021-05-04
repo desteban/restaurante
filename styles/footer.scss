@@ -4,10 +4,11 @@
 	padding: 1rem 5%;
 	margin-top: 1rem;
 	gap: 1rem;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: repeat(1, 1fr);
 
 	.titulo {
 		font-size: 1.8rem;
+		text-align: center;
 	}
 
 	.seccion {
@@ -43,6 +44,17 @@
 
 .descripcion {
 	grid-column: 1/-1;
+}
+
+.social {
+	display: grid;
+	gap: 1rem;
+}
+
+@media screen and (min-width: 600px) {
+	.footer {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 
 @media screen and (min-width: 992px) {

@@ -140,7 +140,7 @@ export default function Home() {
 
 			<Menu />
 
-			<main>
+			<main className="espacio">
 				<h1 className="center">Il Ristorante</h1>
 				<div className="menu">
 					{imagenes.map((plato) => {
