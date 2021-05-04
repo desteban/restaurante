@@ -8,12 +8,23 @@ class NuevaReserva extends Component {
 		super(props);
 
 		this.state = {
-			reserva_fecha: this.Fecha2string(new Date())
+			reserva_fecha: this.Fecha2string()
 		};
 	}
 
-	Fecha2string = (date) => {
-		return `${date.getFullYear()}-0${date.getMonth() + 1}-${date.getDate()}`;
+	Fecha2string = (date = new Date()) => {
+		let year = date.getFullYear();
+		let month = date.getMonth() + 1;
+		let day = date.getDate();
+
+		if (month < 10) {
+			month = `0${month}`;
+		}
+
+		if (day < 10) {
+			day = `0${day}`;
+		}
+		return `${year}-${month}-${day}`;
 	};
 
 	FinCalendario = (date) => {
@@ -35,7 +46,7 @@ class NuevaReserva extends Component {
 
 				<Menu />
 
-				<div className="contenido">
+				<div className="espacio">
 					<p>Fecha</p>
 					<input
 						type="date"
