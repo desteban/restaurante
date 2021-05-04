@@ -12,18 +12,20 @@ export default function menu() {
 			</div>
 
 			<div className="nav-opciones">
-				<Link href="/">
-					<a className="item-nav">op1</a>
-				</Link>
-				<Link href="/">
-					<a className="item-nav">op2</a>
-				</Link>
-				<Link href="/">
-					<a className="item-nav">op3</a>
-				</Link>
+				<div className="item-nav">
+					<Link href="/">
+						<a>Menu</a>
+					</Link>
+				</div>
+
+				<div className="item-nav dividir">
+					<Link href="/reservas">
+						<a>Reservas</a>
+					</Link>
+				</div>
 			</div>
 
-			<span class="material-icons burger">menu</span>
+			<span className="material-icons burger">menu</span>
 		</nav>
 	);
 }

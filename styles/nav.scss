@@ -1,5 +1,6 @@
 .nav {
-	background: red;
+	background-color: #e1701a;
+	// background-color: white;
 	display: flex;
 	position: relative;
 	justify-content: center;
@@ -9,6 +10,7 @@
 	.logo {
 		font-size: 1.2rem;
 		font-family: 'Rock Salt', cursive;
+		color: black;
 	}
 
 	.burger {
@@ -27,7 +29,6 @@
 
 @media screen and (min-width: 992px) {
 	.nav {
-		background-color: blue;
 		padding: 0px 2rem;
 		display: grid;
 		gap: 1rem;
@@ -47,12 +48,31 @@
 		grid-column: 2/-1;
 		display: flex;
 		justify-content: flex-end;
+		align-items: center;
 		color: black;
+		height: 64px;
 
 		.item-nav {
 			margin: 0px 1rem;
 			color: black;
 			transition: all 0.4s;
+			height: 64px;
+			padding: 0.5rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			& a {
+				color: black;
+			}
+
+			&.dividir {
+				margin-left: white solid 1px;
+			}
+
+			&:hover {
+				background-color: #e48237;
+			}
 		}
 	}
 }
@@ -62,49 +82,3 @@
 	width: 100%;
 	top: 0;
 }
-
-// .nav {
-// 	background-color: red;
-// 	height: 64px;
-// 	position: relative;
-// 	display: flex;
-// 	align-items: center;
-// 	justify-content: center;
-
-// 	.burger {
-// 		position: absolute;
-// 		cursor: pointer;
-// 		right: 0;
-// 		margin: 0px 1rem;
-// 	}
-
-// 	.logo {
-// 		font-size: 1.2rem;
-// 		font-family: 'Rock Salt', cursive;
-// 	}
-
-// 	.ul {
-// 		display: flex;
-// 	}
-
-// 	.nav-opciones {
-// 	}
-// }
-
-// @media screen and (min-width: 992px) {
-// 	.nav {
-// 		justify-content: space-between;
-// 		background: blue;
-// 		padding: 0px 2rem;
-// 	}
-
-// 	.burger {
-// 		display: none;
-// 	}
-// }
-
-// @media screen and (max-width: 991px) {
-// 	.nav-opciones {
-// 		display: none;
-// 	}
-// }

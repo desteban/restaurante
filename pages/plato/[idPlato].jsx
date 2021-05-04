@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Resena from '../../components/resena';
 import Link from 'next/link';
+import Menu from '../../components/menu';
 import Footer from '../../components/footer';
 
 const plato = () => {
@@ -93,17 +94,6 @@ const plato = () => {
 					}
 				}
 
-				.footer {
-					width: 100%;
-					height: 100px;
-					border-top: 1px solid #eaeaea;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					padding: 1.5rem;
-					background: #eaeaea;
-				}
-
 				.precio {
 					font-weight: bold;
 				}
@@ -119,10 +109,6 @@ const plato = () => {
 					padding: 0.25rem 0.8rem;
 					background: rgb(240, 70, 50);
 					border-radius: 1rem;
-				}
-
-				.espacio {
-					padding-top: 60px;
 				}
 			`}</style>
 
@@ -140,11 +126,7 @@ const plato = () => {
 				<meta charset="utf-8" />
 			</Head>
 
-			<header className="header">
-				<Link href="/">
-					<a>ERP</a>
-				</Link>
-			</header>
+			<Menu />
 
 			<main className="espacio">
 				<div className="contenido">

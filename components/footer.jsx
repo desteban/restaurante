@@ -39,7 +39,7 @@ export default function footer() {
 								version="1.1"
 								xmlns="http://www.w3.org/2000/svg"
 								preserveAspectRatio="xMidYMid"
-								class=""
+								className=""
 							>
 								<g>
 									<path
@@ -59,7 +59,7 @@ export default function footer() {
 							version="1.1"
 							xmlns="http://www.w3.org/2000/svg"
 							preserveAspectRatio="xMidYMid"
-							class=""
+							className=""
 						>
 							<g>
 								<path
@@ -74,7 +74,7 @@ export default function footer() {
 
 					<Link href="/contacto">
 						<a>
-							<span class="material-icons black">room</span>
+							<span className="material-icons black">room</span>
 						</a>
 					</Link>
 				</div>
