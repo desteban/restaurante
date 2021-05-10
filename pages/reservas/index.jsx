@@ -54,6 +54,12 @@ class NuevaReserva extends Component {
 			<div>
 				<Head>
 					<title>Reservas</title>
+					<meta
+						name="description"
+						content="Reserva para poder probar nuestros deliciosos platillos, no que quedes con las ganas"
+					/>
+					<meta charset="utf-8" />
+					<meta name="keywords" content="restaurantes, reservas, reserva il ristorante" />
 				</Head>
 
 				<Menu />
@@ -140,7 +146,7 @@ class NuevaReserva extends Component {
 
 						<div className="centro espacio">
 							<div className="btn" onClick={this.send}>
-								Registrar
+								Reservar
 							</div>
 						</div>
 					</form>
