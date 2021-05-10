@@ -3,6 +3,7 @@
 	position: relative;
 	display: flex;
 	height: 64px;
+	transition: all 0.4s;
 
 	.logo {
 		font-size: 1.2rem;
@@ -44,6 +45,21 @@
 		margin: 1rem;
 		width: 100%;
 		padding: 0px 2rem;
+	}
+
+	.menu-oculto {
+		display: none;
+	}
+
+	.item-nav {
+		margin-bottom: 0.5rem;
+		padding: 0.5rem 1rem;
+		cursor: pointer;
+		border-bottom: black solid 1px;
+
+		a {
+			// color: #111010;
+		}
 	}
 }
 
@@ -94,12 +110,6 @@
 				background-color: #e48237;
 			}
 		}
-	}
-}
-
-@media screen and (max-width: 991px) {
-	.menu-oculto {
-		display: none;
 	}
 }
 

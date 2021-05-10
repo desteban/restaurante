@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Menu from '../components/menu';
 
 export default function contacto() {
 	return (
@@ -48,6 +49,8 @@ export default function contacto() {
 			<Head>
 				<title>Contacto</title>
 			</Head>
+
+			<Menu />
 
 			<div className="restaurante">
 				<div className="nombre">
