@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Head from 'next/head';
 import Menu from '../../components/menu';
 import Footer from '../../components/footer';
+import Entrada from '../../components/entrada';
 
 class NuevaReserva extends Component {
 	constructor(props) {
@@ -74,64 +75,47 @@ class NuevaReserva extends Component {
 							</select>
 						</div>
 
-						<div className="input">
-							<label htmlFor="documento">Documento</label>
-							<input
-								type="number"
-								id="documento"
-								name="documento"
-								autoComplete="off"
-								placeholder="Numero de documento"
-								value={this.state.num_documento}
-								onChange={(event) => {
-									this.cambiarEstado(event, 'num_documento');
-								}}
-							/>
-						</div>
+						<Entrada
+							id="documento"
+							label="Documento"
+							placeholder="Documento"
+							type="number"
+							value={this.state.num_documento}
+							onChange={(event) => {
+								this.cambiarEstado(event, 'num_documento');
+							}}
+						/>
 
-						<div className="input">
-							<label htmlFor="nombre">Nombre</label>
-							<input
-								type="text"
-								id="nombre"
-								name="nombre"
-								autoComplete="off"
-								placeholder="Nombre"
-								value={this.state.nombre}
-								onChange={(event) => {
-									this.cambiarEstado(event, 'nombre');
-								}}
-							/>
-						</div>
+						<Entrada
+							id="nombre"
+							label="Nombre"
+							placeholder="Nombre"
+							value={this.state.nombre}
+							onChange={(event) => {
+								this.cambiarEstado(event, 'nombre');
+							}}
+						/>
 
-						<div className="input">
-							<label htmlFor="apellido">Apellido</label>
-							<input
-								type="text"
-								id="apellido"
-								name="apellido"
-								utocomplete="off"
-								placeholder="Apellido"
-								value={this.state.apellido}
-								onChange={(event) => {
-									this.cambiarEstado(event, 'apellido');
-								}}
-							/>
-						</div>
+						<Entrada
+							id="apellido"
+							label="Apellido"
+							placeholder="Apellido"
+							value={this.state.apellido}
+							onChange={(event) => {
+								this.cambiarEstado(event, 'apellido');
+							}}
+						/>
 
-						<div className="input">
-							<label htmlFor="telefono">Telefono</label>
-							<input
-								type="number"
-								name="telefono"
-								id="telefono"
-								placeholder="Telefono"
-								value={this.state.telefono}
-								onChange={(event) => {
-									this.cambiarEstado(event, 'telefono');
-								}}
-							/>
-						</div>
+						<Entrada
+							id="telefono"
+							label="Telefono"
+							type="number"
+							placeholder="Telefono"
+							value={this.state.telefono}
+							onChange={(event) => {
+								this.cambiarEstado(event, 'telefono');
+							}}
+						/>
 
 						<p>Fecha de reserva</p>
 						<input
