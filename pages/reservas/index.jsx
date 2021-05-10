@@ -8,9 +8,21 @@ class NuevaReserva extends Component {
 		super(props);
 
 		this.state = {
-			reserva_fecha: this.Fecha2string()
+			reserva_fecha: this.Fecha2string(),
+			nombre: '',
+			apellido: '',
+			telefono: '',
+			num_documento: ''
 		};
 	}
+
+	cambiarEstado = (event, estado) => {
+		this.setState({ [estado]: event.target.value });
+	};
+
+	send = () => {
+		console.log(this.state);
+	};
 
 	Fecha2string = (date = new Date()) => {
 		let year = date.getFullYear();
@@ -46,17 +58,92 @@ class NuevaReserva extends Component {
 
 				<Menu />
 
-				<div className="espacio">
-					<p>Fecha</p>
-					<input
-						type="date"
-						id="reserva_fecha"
-						name="reserva_fecha"
-						value={this.state.reserva_fecha}
-						onChange={this.handleChange}
-						max={this.FinCalendario()}
-						min={this.Fecha2string(new Date())}
-					/>
+				<div className="espacio contenido_page">
+					<form>
+						<div className="input">
+							<label htmlFor="tipodoc">Tipo de Documento</label>
+							<select name="tipodoc" id="tipodoc">
+								<option value="CC">CC</option>
+								<option value="Pasaporte">Pasaporte</option>
+							</select>
+						</div>
+
+						<div className="input">
+							<label htmlFor="documento">Documento</label>
+							<input
+								type="number"
+								id="documento"
+								name="documento"
+								autoComplete="off"
+								placeholder="Numero de documento"
+								value={this.state.num_documento}
+								onChange={(event) => {
+									this.cambiarEstado(event, 'num_documento');
+								}}
+							/>
+						</div>
+
+						<div className="input">
+							<label htmlFor="nombre">Nombre</label>
+							<input
+								type="text"
+								id="nombre"
+								name="nombre"
+								autoComplete="off"
+								placeholder="Nombre"
+								value={this.state.nombre}
+								onChange={(event) => {
+									this.cambiarEstado(event, 'nombre');
+								}}
+							/>
+						</div>
+
+						<div className="input">
+							<label htmlFor="apellido">Apellido</label>
+							<input
+								type="text"
+								id="apellido"
+								name="apellido"
+								utocomplete="off"
+								placeholder="Apellido"
+								value={this.state.apellido}
+								onChange={(event) => {
+									this.cambiarEstado(event, 'apellido');
+								}}
+							/>
+						</div>
+
+						<div className="input">
+							<label htmlFor="telefono">Telefono</label>
+							<input
+								type="number"
+								name="telefono"
+								id="telefono"
+								placeholder="Telefono"
+								value={this.state.telefono}
+								onChange={(event) => {
+									this.cambiarEstado(event, 'telefono');
+								}}
+							/>
+						</div>
+
+						<p>Fecha de reserva</p>
+						<input
+							type="date"
+							id="reserva_fecha"
+							name="reserva_fecha"
+							value={this.state.reserva_fecha}
+							onChange={this.handleChange}
+							max={this.FinCalendario()}
+							min={this.Fecha2string(new Date())}
+						/>
+
+						<div className="centro espacio">
+							<div className="btn" onClick={this.send}>
+								Registrar
+							</div>
+						</div>
+					</form>
 				</div>
 
 				<Footer />
