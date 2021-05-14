@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Menu from '../components/menu';
+import Footer from '../components/footer';
 
 export default function contacto() {
 	return (
@@ -62,7 +63,7 @@ export default function contacto() {
 				/>
 			</div>
 
-			<div className="contenido">
+			<main className="contenido">
 				<div className="texto">
 					<h2 className="centro">Contacto</h2>
 					<p>
@@ -103,7 +104,9 @@ export default function contacto() {
 						className="mapa"
 					></iframe>
 				</div>
-			</div>
+			</main>
+
+			<Footer />
 		</div>
 	);
 }

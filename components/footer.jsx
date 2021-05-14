@@ -30,7 +30,7 @@ export default function footer() {
 				<p className="titulo">Contacto</p>
 
 				<div className="social">
-					<span>
+					<span className="click">
 						<span>
 							<svg
 								width="24"
@@ -51,7 +51,7 @@ export default function footer() {
 						</span>
 					</span>
 
-					<span>
+					<span className="click">
 						<svg
 							width="24"
 							height="24"
@@ -70,7 +70,7 @@ export default function footer() {
 						</svg>
 					</span>
 
-					<img src="/instagram.svg" alt="instagram" className="logo" />
+					<img src="/instagram.svg" alt="instagram" className="logo click" />
 
 					<Link href="/contacto">
 						<a>
