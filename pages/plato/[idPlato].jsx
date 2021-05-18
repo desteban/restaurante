@@ -128,7 +128,7 @@ const plato = () => {
 
 			<Menu />
 
-			<main className="espacio">
+			<main className="espacio contenido_page">
 				<div className="contenido">
 					<div className="cabecera">
 						<h1> {idPlato} </h1>
