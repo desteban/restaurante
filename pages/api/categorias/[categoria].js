@@ -50,7 +50,7 @@ async function eliminar_categoria(nom_categoria) {
 
 		return { code: 200, mensaje: 'Categoria eliminada' };
 	} catch (error) {
-		console.log('algo salio mal');
+		delete error.sql;
 		return { code: 500, mensaje: 'Algo salio mal' };
 	}
 }
