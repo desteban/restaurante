@@ -5,7 +5,13 @@ export default async function (req, res) {
 
 	let { categoria } = req.query;
 
-	respuesta = await buscar_categoria(categoria);
+	if (req.method == 'GET') {
+		respuesta = await buscar_categoria(categoria);
+	}
+
+	if (req.method == 'DELETE') {
+		respuesta = await eliminar_categoria(categoria);
+	}
 
 	res.status(respuesta.code).json(respuesta);
 }
@@ -31,5 +37,20 @@ async function buscar_categoria(nom_categoria) {
 	} catch (error) {
 		delete error.sql;
 		return { code: 400, mensaje: 'Algo salio mal', error };
+	}
+}
+
+async function eliminar_categoria(nom_categoria) {
+	try {
+		let resultado = await db.query(
+			'DELETE FROM categorias WHERE categorias.nom_categoria = ?',
+			nom_categoria
+		);
+		db.end();
+
+		return { code: 200, mensaje: 'Categoria eliminada' };
+	} catch (error) {
+		console.log('algo salio mal');
+		return { code: 500, mensaje: 'Algo salio mal' };
 	}
 }
