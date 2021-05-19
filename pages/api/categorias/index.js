@@ -1,4 +1,4 @@
-import { db } from '../../services/database';
+import { db } from '../../../services/database';
 
 export default async function (req, res) {
 	let resultado = { code: 500, mensaje: 'Algo salio mal' };
