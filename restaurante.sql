@@ -5,16 +5,9 @@ CREATE TABLE IF NOT EXISTS categorias(
 CREATE TABLE IF NOT EXISTS platos(
 	id_plato INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	nom_plato VARCHAR(30) UNIQUE NOT NULL,
+	src TEXT NOT NULL,
 	costo DECIMAL(8,2) NOT NULL,
 	descripcion TEXT NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS platos_categorias(
-	id_plato INTEGER NOT NULL AUTO_INCREMENT,
-	nom_categoria VARCHAR(20) NOT NULL,
-	FOREIGN KEY (id_plato) REFERENCES platos(id_plato),
-	FOREIGN KEY (nom_categoria) REFERENCES categorias(nom_categoria),
-	PRIMARY KEY (id_plato, nom_categoria)
 );
 
 CREATE TABLE IF NOT EXISTS documentos(
