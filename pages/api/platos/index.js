@@ -17,7 +17,7 @@ export default async function (req, res) {
 		}
 
 		if (!json) {
-			respuesta = { code: 400, mensaje: 'No se detecta un plato para agregar al menus' };
+			respuesta = { code: 400, mensaje: 'No se detecta un plato para agregar al menu' };
 		}
 	}
 
