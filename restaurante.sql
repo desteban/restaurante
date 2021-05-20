@@ -10,6 +10,14 @@ CREATE TABLE IF NOT EXISTS platos(
 	descripcion TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS platos_categoria(
+	id_plato INTEGER NOT NULL,
+	nom_categoria VARCHAR(20) NOT NULL,
+	FOREIGN KEY (id_plato) REFERENCES platos(id_plato),
+	FOREIGN KEY (nom_categoria) REFERENCES categorias(nom_categoria),
+	PRIMARY KEY (id_plato, nom_categoria)
+);
+
 CREATE TABLE IF NOT EXISTS documentos(
 	documento VARCHAR(30) NOT NULL UNIQUE PRIMARY KEY
 );
