@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS platos(
 	nom_plato VARCHAR(30) UNIQUE NOT NULL,
 	src TEXT NOT NULL,
 	costo DECIMAL(8,2) NOT NULL,
-	descripcion TEXT NOT NULL
+	descripcion TEXT NOT NULL,
+	visible BOOL NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE IF NOT EXISTS platos_categoria(

@@ -45,7 +45,19 @@ async function crear_Palto(plato) {
 				[plato.nom_plato, plato.src, plato.costo, plato.descripcion]
 			);
 
-			return { code: 200, mensaje: 'Palto agregado al menu', respuesta };
+			let id_plato = respuesta.insertId;
+
+			if (plato.categorias && plato.categorias.length != 0) {
+				plato.categorias.map((categoria) => {
+					let respuesta = CategoriasPlato(id_plato, categoria);
+
+					if (respuesta.code != 201) {
+						return respuesta;
+					}
+				});
+			}
+
+			return { code: 201, mensaje: 'Palto agregado al menu', respuesta };
 		}
 
 		if (!plato) {
@@ -68,5 +80,22 @@ async function crear_Palto(plato) {
 		}
 
 		return { code: 500, mensaje: 'Algo salio mal', error };
+	}
+}
+
+async function CategoriasPlato(id_plato, categoria) {
+	try {
+		let respuesta = await db.query(
+			'INSERT INTO platos_categoria (id_plato, nom_categoria) VALUES (?,?)',
+			[id_plato, categoria]
+		);
+
+		return { code: 201, mensaje: 'Categoria agregada al plato' };
+	} catch (error) {
+		return {
+			code: 500,
+			mensaje: 'El plato se agrego al menu pero no se puedo agregar una categoria',
+			categoria
+		};
 	}
 }
