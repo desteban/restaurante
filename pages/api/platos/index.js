@@ -26,7 +26,7 @@ export default async function (req, res) {
 
 async function buscar_platos() {
 	try {
-		let platos = await db.query('SELECT * FROM platos');
+		let platos = await db.query('SELECT * FROM platos WHERE visible = true');
 
 		db.end();
 
@@ -83,7 +83,7 @@ async function crear_Palto(plato) {
 	}
 }
 
-async function CategoriasPlato(id_plato, categoria) {
+export async function CategoriasPlato(id_plato, categoria) {
 	try {
 		let respuesta = await db.query(
 			'INSERT INTO platos_categoria (id_plato, nom_categoria) VALUES (?,?)',
