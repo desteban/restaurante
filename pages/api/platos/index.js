@@ -96,10 +96,13 @@ export async function CategoriasPlato(id_plato, categoria) {
 
 		return { code: 201, mensaje: 'Categoria agregada al plato' };
 	} catch (error) {
+		delete error.sql;
+
 		return {
 			code: 500,
 			mensaje: 'El plato se agrego al menu pero no se puedo agregar una categoria',
-			categoria
+			categoria,
+			error
 		};
 	}
 }
