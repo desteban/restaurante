@@ -1,4 +1,5 @@
 import { db } from '../../../services/database';
+import { buscarPlato } from './[plato]';
 
 export default async function (req, res) {
 	let respuesta = { code: 200, mensaje: '' };
@@ -45,6 +46,7 @@ async function crear_Palto(plato) {
 				[plato.nom_plato, plato.src, plato.costo, plato.descripcion]
 			);
 
+			//agregar categorias a un plato
 			let id_plato = respuesta.insertId;
 
 			if (plato.categorias && plato.categorias.length != 0) {
@@ -76,7 +78,9 @@ async function crear_Palto(plato) {
 		}
 
 		if (error.errno == 1062 || error.code == 'ER_DUP_ENTRY') {
-			return { code: 400, mensaje: 'Este plato ya se encuentra en el menu' };
+			if (platodb.visible == true) {
+				return { code: 400, mensaje: 'Este plato ya se encuentra en el menu', error };
+			}
 		}
 
 		return { code: 500, mensaje: 'Algo salio mal', error };
