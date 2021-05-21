@@ -1,9 +1,12 @@
+import axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
 import Footer from '../components/footer';
 import Menu from '../components/menu';
 
-export default function Home() {
+import { url } from '../services/urls';
+
+function Home({ listaPlatos }) {
 	const imagenes = [
 		{
 			src: 'https://tacos10.com/wp-content/uploads/2019/01/tacos-de-pollo-y-queso.jpg',
@@ -42,13 +45,15 @@ export default function Home() {
 			descripcion: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo quod nulla'
 		},
 		{
-			src:
-				'https://media.istockphoto.com/photos/fresh-salad-bowl-with-shrimp-tomato-avocado-and-arugula-on-wooden-picture-id967589370?s=612x612',
+			src: 'https://media.istockphoto.com/photos/fresh-salad-bowl-with-shrimp-tomato-avocado-and-arugula-on-wooden-picture-id967589370?s=612x612',
 			nombre: 'Ensalada',
 			precio: '00.000',
 			descripcion: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo quod nulla'
 		}
 	];
+
+	// console.log(listaPlatos);
+
 	return (
 		<div>
 			<Head>
@@ -67,21 +72,27 @@ export default function Home() {
 
 			<Menu />
 
-			<main className="espacio">
+			<main className="contenido">
 				<h1 className="center">Il Ristorante</h1>
 				<div className="menu">
-					{imagenes.map((plato) => {
+					{listaPlatos.map((plato) => {
 						return (
-							<Link href={`/plato/${plato.nombre}`} key={plato.nombre}>
+							<Link href={`/plato/${plato.nom_plato}`} key={plato.id_plato}>
 								<a>
 									<div className="card_menu">
 										<div className="imagen">
-											<img src={plato.src} alt={plato.nombre} />
+											<img src={plato.src} alt={plato.nom_plato} />
 										</div>
 										<div className="contenido">
 											<h3 className="titulo">
-												{plato.nombre}{' '}
-												<span className="precio"> ${plato.precio} </span>
+												{plato.nom_plato}
+												<br />
+												<span className="precio">
+													$
+													{new Intl.NumberFormat('de-DE').format(
+														plato.costo
+													)}
+												</span>
 											</h3>
 											<p className="descripcion">{plato.descripcion}</p>
 										</div>
@@ -91,9 +102,29 @@ export default function Home() {
 						);
 					})}
 				</div>
+
+				<div>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati id
+						distinctio reprehenderit nam, expedita molestiae voluptate impedit cumque
+						tempora repudiandae autem magnam doloremque rem fuga amet ab cupiditate,
+						numquam modi.
+					</p>
+				</div>
 			</main>
 
 			<Footer />
 		</div>
 	);
 }
+
+export async function getServerSideProps() {
+	// Fetch data from external API
+	const res = await fetch(`${url.api}/platos`);
+	const data = await res.json();
+
+	// Pass data to the page via props
+	return { props: { listaPlatos: data.platos } };
+}
+
+export default Home;
