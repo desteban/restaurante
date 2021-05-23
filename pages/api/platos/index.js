@@ -29,7 +29,7 @@ async function buscar_platos() {
 	try {
 		let platos = await db.query('SELECT * FROM platos WHERE visible = true');
 
-		db.end();
+		await db.end();
 
 		return { code: 200, mensaje: 'Listado de platos', platos };
 	} catch (error) {
@@ -45,6 +45,8 @@ async function crear_Palto(plato) {
 				'INSERT INTO platos (nom_plato, src, costo, descripcion) VALUES (?,?,?,?)',
 				[plato.nom_plato, plato.src, plato.costo, plato.descripcion]
 			);
+
+			await db.end();
 
 			//agregar categorias a un plato
 			let id_plato = respuesta.insertId;
@@ -93,6 +95,8 @@ export async function CategoriasPlato(id_plato, categoria) {
 			'INSERT INTO platos_categoria (id_plato, nom_categoria) VALUES (?,?)',
 			[id_plato, categoria]
 		);
+
+		await db.end();
 
 		return { code: 201, mensaje: 'Categoria agregada al plato' };
 	} catch (error) {

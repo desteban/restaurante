@@ -32,6 +32,8 @@ async function eliminar_Plato(plato) {
 			plato
 		);
 
+		await db.end();
+
 		return { code: 200, mensaje: 'El plato ya no es visible en el menu' };
 	} catch (error) {
 		delete error.sql;
@@ -43,6 +45,8 @@ async function eliminar_Plato(plato) {
 export async function buscarPlato(plato) {
 	try {
 		let platodb = await db.query('SELECT * FROM platos WHERE platos.nom_plato = ?', plato);
+
+		await db.end();
 
 		return { code: 200, mensaje: 'Se ha encontrado el plato', platodb };
 	} catch (error) {
