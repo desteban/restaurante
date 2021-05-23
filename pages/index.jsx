@@ -52,8 +52,6 @@ function Home({ listaPlatos }) {
 		}
 	];
 
-	// console.log(listaPlatos);
-
 	return (
 		<div>
 			<Head>
@@ -119,12 +117,19 @@ function Home({ listaPlatos }) {
 }
 
 export async function getServerSideProps() {
-	// Fetch data from external API
-	const res = await fetch(`${url.api}/platos`);
-	const data = await res.json();
+	let data = {};
+
+	await axios
+		.get(`${url.api}/platos`)
+		.then((response) => {
+			data = response.data.platos;
+		})
+		.catch((err) => {
+			resaxios = { code: 400, err };
+		});
 
 	// Pass data to the page via props
-	return { props: { listaPlatos: data.platos } };
+	return { props: { listaPlatos: data } };
 }
 
 export default Home;
