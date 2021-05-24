@@ -46,6 +46,16 @@ export async function buscarPlato(plato) {
 	try {
 		let platodb = await db.query('SELECT * FROM platos WHERE platos.nom_plato = ?', plato);
 
+		let categorias = await db.query(
+			`SELECT platos_categoria.nom_categoria
+		FROM platos_categoria
+		INNER JOIN platos ON platos_categoria.id_plato = platos.id_plato
+		WHERE platos.nom_plato = ?`,
+			plato
+		);
+
+		platodb[0].categorias = categorias;
+
 		await db.end();
 
 		return { code: 200, mensaje: 'Se ha encontrado el plato', platodb };
