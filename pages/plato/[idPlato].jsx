@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Resena from '../../components/resena';
 import Menu from '../../components/menu';
 import Footer from '../../components/footer';
-import axios from 'axios';
 
 import { url } from '../../services/urls';
 
@@ -145,8 +144,11 @@ const plato = ({ plato }) => {
 							{new Intl.NumberFormat('de-DE').format(platodb.costo)}
 						</span>
 						<ul className="etiquetas">
-							<li>Entrada</li>
-							<li>Mexicano</li>
+							{platodb.categorias.map((categoria) => {
+								return (
+									<li key={categoria.nom_categoria}>{categoria.nom_categoria}</li>
+								);
+							})}
 						</ul>
 						<p>{platodb.descripcion}</p>
 					</div>
