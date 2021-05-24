@@ -34,7 +34,7 @@ async function buscar_platos() {
 		return { code: 200, mensaje: 'Listado de platos', platos };
 	} catch (error) {
 		delete error.sql;
-		return { code: 500, mensaje: 'Algo salio mal, intente mas tarde' };
+		return { code: 500, mensaje: 'Algo salio mal, intente mas tarde', error };
 	}
 }
 
