@@ -1,13 +1,18 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Resena from '../../components/resena';
-import Link from 'next/link';
 import Menu from '../../components/menu';
 import Footer from '../../components/footer';
+import axios from 'axios';
 
-const plato = () => {
+import { url } from '../../services/urls';
+
+const plato = ({ plato }) => {
 	const router = useRouter();
 	const { idPlato } = router.query;
+
+	const platodb = plato.platodb[0];
+
 	return (
 		<div>
 			<style jsx>{`
@@ -115,15 +120,13 @@ const plato = () => {
 			<Head>
 				<title> {`Platos - ${idPlato}`} </title>
 				<link rel="icon" href="/favicon.ico" />
-				<meta
-					name="description"
-					content="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo
-              quod nulla, quibusdam perferendis quasi ut culpa temporibus beatae
-              reprehenderit id, deserunt fuga dolorem tenetur blanditiis dicta
-              ad minus ab voluptatibus!"
-				/>
+				<meta name="description" content={`${platodb.descripcion}`} />
 				<meta name="keywords" content={`${idPlato}, ${idPlato} il ristorante`} />
 				<meta charset="utf-8" />
+				<meta
+					name="keywords"
+					content={`restaurantes, ristorante, il ristorante,${idPlato}`}
+				/>
 			</Head>
 
 			<Menu />
@@ -131,27 +134,21 @@ const plato = () => {
 			<main className="espacio contenido_page">
 				<div className="contenido">
 					<div className="cabecera">
-						<h1> {idPlato} </h1>
+						<h1> {platodb.nom_plato} </h1>
 					</div>
 
 					<div className="img-plato">
-						<img
-							src="https://tacos10.com/wp-content/uploads/2019/01/tacos-de-pollo-y-queso.jpg"
-							alt="Plato"
-						/>
+						<img src={`${platodb.src}`} alt="Plato" />
 					</div>
 					<div className="descripcion">
-						<span className="precio">$15.000</span>
+						<span className="precio">
+							{new Intl.NumberFormat('de-DE').format(platodb.costo)}
+						</span>
 						<ul className="etiquetas">
 							<li>Entrada</li>
 							<li>Mexicano</li>
 						</ul>
-						<p>
-							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo quod
-							nulla, quibusdam perferendis quasi ut culpa temporibus beatae
-							reprehenderit id, deserunt fuga dolorem tenetur blanditiis dicta ad
-							minus ab voluptatibus!
-						</p>
+						<p>{platodb.descripcion}</p>
 					</div>
 				</div>
 				<div className="resenas">
@@ -173,5 +170,29 @@ const plato = () => {
 		</div>
 	);
 };
+
+export async function getServerSideProps(context) {
+	let data = {};
+	const { idPlato } = context.query;
+
+	const res = await fetch(`${url.api}/platos/${idPlato}`);
+	data = await res.json();
+	// data = await res.json;
+
+	// await axios
+	// 	.get(`${url.api}/platos`)
+	// 	.then((response) => {
+	// 		data = {
+	// 			nombre: idPlato,
+	// 			platos: response.data.platos,
+	// 			url: `${url.api}/platos/${idPlato}`
+	// 		};
+	// 	})
+	// 	.catch((err) => {
+	// 		resaxios = { code: 400, err };
+	// 	});
+
+	return { props: { plato: data } };
+}
 
 export default plato;

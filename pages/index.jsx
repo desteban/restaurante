@@ -75,28 +75,24 @@ function Home({ listaPlatos }) {
 				<div className="menu">
 					{listaPlatos.map((plato) => {
 						return (
-							<Link href={`/plato/${plato.nom_plato}`} key={plato.id_plato}>
-								<a>
-									<div className="card_menu">
-										<div className="imagen">
-											<img src={plato.src} alt={plato.nom_plato} />
-										</div>
-										<div className="contenido">
-											<h3 className="titulo">
-												{plato.nom_plato}
-												<br />
-												<span className="precio">
-													$
-													{new Intl.NumberFormat('de-DE').format(
-														plato.costo
-													)}
-												</span>
-											</h3>
-											<p className="descripcion">{plato.descripcion}</p>
-										</div>
+							<a href={`/plato/${plato.nom_plato}`} key={plato.id_plato}>
+								<div className="card_menu">
+									<div className="imagen">
+										<img src={plato.src} alt={plato.nom_plato} />
 									</div>
-								</a>
-							</Link>
+									<div className="contenido">
+										<h3 className="titulo">
+											{plato.nom_plato}
+											<br />
+											<span className="precio">
+												$
+												{new Intl.NumberFormat('de-DE').format(plato.costo)}
+											</span>
+										</h3>
+										<p className="descripcion">{plato.descripcion}</p>
+									</div>
+								</div>
+							</a>
 						);
 					})}
 				</div>
