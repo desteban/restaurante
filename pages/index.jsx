@@ -113,16 +113,11 @@ function Home({ listaPlatos }) {
 }
 
 export async function getServerSideProps() {
-	let data = {};
+	let data = [];
 
-	await axios
-		.get(`${url.api}/platos`)
-		.then((response) => {
-			data = response.data.platos;
-		})
-		.catch((err) => {
-			resaxios = { code: 400, err };
-		});
+	await axios.get(`${url.api}/platos`).then((response) => {
+		data = response.data.platos;
+	});
 
 	// Pass data to the page via props
 	return { props: { listaPlatos: data } };
