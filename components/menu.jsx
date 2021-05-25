@@ -24,6 +24,12 @@ export default function menu() {
 						<a>Reservas</a>
 					</div>
 				</Link>
+
+				<Link href="/contacto">
+					<div className="item-nav dividir" onClick={() => ocultarMenu()}>
+						<a>Acerca de nosotros </a>
+					</div>
+				</Link>
 			</div>
 
 			<div className="burger" onClick={() => ocultarMenu()}>

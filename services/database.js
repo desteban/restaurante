@@ -5,7 +5,6 @@ export let db = mysql({
 		host: process.env.HOSTNAME,
 		user: process.env.USERDB,
 		password: process.env.PASSWORD,
-		database: process.env.DATABASE,
-		port: process.env.PORT
+		database: process.env.DATABASE
 	}
 });
