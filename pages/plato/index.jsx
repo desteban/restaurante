@@ -18,7 +18,8 @@ class Plato extends Component {
 			costo: '',
 			descripcion: 'Un taco que mas',
 			categorias: [],
-			listaCategorias: props.listaCategorias
+			listaCategorias: props.listaCategorias,
+			load: true
 		};
 	}
 
@@ -108,7 +109,43 @@ class Plato extends Component {
 							</form>
 						</div>
 
-						<div className="listaPlatos"></div>
+						<div className="listaPlatos">
+							<h2>Listado de platos</h2>
+							{this.state.load ? (
+								<div className="loader">
+									<p>Buscando platos</p>
+									<div className="lds-dual-ring"></div>
+								</div>
+							) : null}
+
+							<div className="menu">
+								{this.state.listaPlatos.map((plato) => {
+									return (
+										<div className="card_menu" key={plato.nom_plato}>
+											<div className="imagen">
+												<img src={plato.src} alt={plato.nom_plato} />
+											</div>
+
+											<div className="contenido">
+												<h3 className="titulo">
+													{plato.nom_plato}
+													<br />
+													<span className="precio">
+														$
+														{new Intl.NumberFormat('de-DE').format(
+															plato.costo
+														)}
+													</span>
+													<p className="descripcion">
+														{plato.descripcion}
+													</p>
+												</h3>
+											</div>
+										</div>
+									);
+								})}
+							</div>
+						</div>
 					</div>
 				</main>
 

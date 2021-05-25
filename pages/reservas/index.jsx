@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Menu from '../../components/menu';
 import Footer from '../../components/footer';
 import Entrada from '../../components/entrada';
+import Link from 'next/link';
 
 class NuevaReserva extends Component {
 	constructor(props) {
@@ -127,6 +128,13 @@ class NuevaReserva extends Component {
 							max={this.FinCalendario()}
 							min={this.Fecha2string(new Date())}
 						/>
+
+						<div>
+							<p>
+								Al momento de realizar la reserva aceptas todos los
+								<a className="enlace"> terminos y condiciones</a>
+							</p>
+						</div>
 
 						<div className="centro espacio">
 							<div className="btn" onClick={this.send}>
