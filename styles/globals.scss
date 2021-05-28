@@ -141,6 +141,12 @@ h1.center {
 .icono {
 	height: 24px;
 	margin: 0px 0.5rem;
+	max-width: 24px;
+	cursor: pointer;
+}
+
+.hide {
+	display: none !important;
 }
 
 .primary-color {
@@ -181,7 +187,7 @@ h1.center {
 	margin: 8px;
 	border-radius: 50%;
 	border: 6px solid #c9c4c4;
-	border-color: #c9c4c4 transparent #c9c4c4 transparent;
+	border-color: #e1701a transparent #e1701a transparent;
 	animation: lds-dual-ring 1.2s linear infinite;
 }
 @keyframes lds-dual-ring {

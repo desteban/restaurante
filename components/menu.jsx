@@ -29,6 +29,7 @@ export default function menu() {
 
 				<Link href="/contacto">
 					<div className="item-nav dividir" onClick={() => ocultarMenu()}>
+						<img src="/info.svg" alt="" className="icono click" />
 						<a>Acerca de nosotros </a>
 					</div>
 				</Link>

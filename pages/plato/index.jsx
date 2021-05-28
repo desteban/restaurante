@@ -21,7 +21,8 @@ class Plato extends Component {
 			categoria: '',
 			listaCategorias: props.listaCategorias,
 			load: true,
-			crear: false
+			crear: false,
+			oculto: false
 		};
 	}
 
@@ -149,7 +150,29 @@ class Plato extends Component {
 						</div>
 
 						<div className="listaPlatos">
-							<h2>Listado de platos</h2>
+							<h2>
+								Listado de platos{' '}
+								{this.state.oculto ? (
+									<span
+										className="material-icons icono"
+										onClick={() => this.ocultar_listado()}
+									>
+										remove_red_eye
+									</span>
+								) : (
+									<span
+										className="material-icons icono"
+										onClick={() => this.ocultar_listado()}
+									>
+										visibility_off
+									</span>
+								)}
+							</h2>
+
+							{this.state.oculto ? (
+								<p>El listado de platos se encuentra oculto</p>
+							) : null}
+
 							{this.state.load ? (
 								<div className="loader">
 									<p>Buscando platos</p>
@@ -157,7 +180,7 @@ class Plato extends Component {
 								</div>
 							) : null}
 
-							<div className="listado">
+							<div className="listado" id="listado_platosdb">
 								{this.state.listaPlatos.map((plato) => {
 									return (
 										<div className="card_menu" key={plato.nom_plato}>
@@ -176,15 +199,15 @@ class Plato extends Component {
 														)}
 													</span>
 													<div className="descripcion">
-														<div className="ajustes">
-															<span className="material-icons">
+														{/* <div className="ajustes">
+															<span className="material-icons icono">
 																delete_outline
 															</span>
 
-															<span className="material-icons">
+															<span className="material-icons icono">
 																settings
 															</span>
-														</div>
+														</div> */}
 
 														<p className="descripcion">
 															{plato.descripcion}
@@ -279,6 +302,14 @@ class Plato extends Component {
 		return arrCategorias.find(
 			(categoria) => categoria.nom_categoria == categoriaBuscar.nom_categoria
 		);
+	}
+
+	ocultar_listado() {
+		this.setState({ oculto: !this.state.oculto });
+
+		let listado_platosdb = document.getElementById('listado_platosdb');
+
+		listado_platosdb.classList.toggle('hide');
 	}
 }
 
