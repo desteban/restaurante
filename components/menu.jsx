@@ -15,12 +15,14 @@ export default function menu() {
 			<div className="nav-opciones menu-oculto" id="nav-opciones">
 				<Link href="/">
 					<div className="item-nav" onClick={() => ocultarMenu()}>
+						<img src="/menu.svg" alt="" className="icono click" />
 						<a>Menu</a>
 					</div>
 				</Link>
 
 				<Link href="/reservas">
 					<div className="item-nav dividir" onClick={() => ocultarMenu()}>
+						<img src="/recepcion.svg" alt="" className="icono click" />
 						<a>Reservas</a>
 					</div>
 				</Link>

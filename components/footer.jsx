@@ -81,6 +81,12 @@ export default function footer() {
 			</div>
 
 			<div className="derechos">
+				<div>
+					Icons from{' '}
+					<a href="https://www.flaticon.com/" Target="_blanck" title="Flaticon">
+						www.flaticon.com
+					</a>
+				</div>
 				<p>Copyright©2021</p>
 			</div>
 		</div>
