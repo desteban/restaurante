@@ -23,6 +23,12 @@ export default function footer() {
 							<a className="black">Reservas</a>
 						</Link>
 					</li>
+
+					<li>
+						<Link href="/plato">
+							<a className="black">Agregar Platos al menu</a>
+						</Link>
+					</li>
 				</ul>
 			</div>
 

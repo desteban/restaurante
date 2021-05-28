@@ -7,7 +7,8 @@ export default function menu() {
 			<div className="brand">
 				<Link href="/">
 					<a>
-						<span className="logo">Il Ristorante</span>
+						{/* <span className="logo">Il Ristorante</span> */}
+						<img src="/logo.svg" alt="Il Ristorente" className="restaurente-logo" />
 					</a>
 				</Link>
 			</div>

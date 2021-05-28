@@ -14,7 +14,8 @@ class NuevaReserva extends Component {
 			nombre: '',
 			apellido: '',
 			telefono: '',
-			num_documento: ''
+			num_documento: '',
+			email: ''
 		};
 	}
 
@@ -68,22 +69,14 @@ class NuevaReserva extends Component {
 
 				<div className="espacio contenido_page">
 					<form>
-						<div className="input">
-							<label htmlFor="tipodoc">Tipo de Documento</label>
-							<select name="tipodoc" id="tipodoc">
-								<option value="CC">CC</option>
-								<option value="Pasaporte">Pasaporte</option>
-							</select>
-						</div>
-
 						<Entrada
-							id="documento"
-							label="Documento"
-							placeholder="Documento"
-							type="number"
-							value={this.state.num_documento}
+							id="email"
+							label="Correo electronico"
+							placeholder="Correo electronico"
+							type="email"
+							value={this.state.email}
 							onChange={(event) => {
-								this.cambiarEstado(event, 'num_documento');
+								this.cambiarEstado(event, 'email');
 							}}
 						/>
 
