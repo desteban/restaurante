@@ -18,6 +18,7 @@ class Plato extends Component {
 			costo: '',
 			descripcion: 'Un taco que mas',
 			categorias: [],
+			categoria: '',
 			listaCategorias: props.listaCategorias,
 			load: true
 		};
@@ -80,18 +81,41 @@ class Plato extends Component {
 
 								<div className="input centro">
 									<label htmlFor="tipodoc">Categorias</label>
-									<select name="tipodoc" id="tipodoc">
+									<select
+										name="tipodoc"
+										id="tipodoc"
+										onChange={(event) => this.cambiarEstado(event, 'categoria')}
+									>
+										<option value="">Seleccionar</option>
+
 										{this.state.listaCategorias.map((categoria) => {
 											return (
-												<option value={categoria.nom_categoria}>
+												<option
+													value={categoria.nom_categoria}
+													key={categoria.nom_categoria}
+												>
 													{categoria.nom_categoria}
 												</option>
 											);
 										})}
-
-										<option value="CC">CC</option>
-										<option value="Pasaporte">Pasaporte</option>
 									</select>
+
+									<span
+										className="material-icons btn-round"
+										onClick={() => this.agregarCategoria()}
+									>
+										add
+									</span>
+								</div>
+
+								<div className="categorias">
+									{this.state.categorias.map((categoria) => {
+										return (
+											<div className="categoria">
+												{categoria.nom_categoria}
+											</div>
+										);
+									})}
 								</div>
 
 								<div className="centro espacio">
@@ -118,7 +142,7 @@ class Plato extends Component {
 								</div>
 							) : null}
 
-							<div className="menu">
+							<div className="listado">
 								{this.state.listaPlatos.map((plato) => {
 									return (
 										<div className="card_menu" key={plato.nom_plato}>
@@ -136,9 +160,21 @@ class Plato extends Component {
 															plato.costo
 														)}
 													</span>
-													<p className="descripcion">
-														{plato.descripcion}
-													</p>
+													<div className="descripcion">
+														<div className="ajustes">
+															<span class="material-icons">
+																delete_outline
+															</span>
+
+															<span class="material-icons">
+																settings
+															</span>
+														</div>
+
+														<p className="descripcion">
+															{plato.descripcion}
+														</p>
+													</div>
 												</h3>
 											</div>
 										</div>
@@ -173,6 +209,30 @@ class Plato extends Component {
 
 	send() {
 		console.log(this.state);
+	}
+
+	agregarCategoria() {
+		let categoriasAux = this.state.categorias;
+
+		if (this.state.categoria.length) {
+			const categoriaAux = { nom_categoria: this.state.categoria };
+
+			if (this.buscar_arreglo(categoriasAux, categoriaAux)) {
+				alert('Esta categoría ya se ha agregado anteriormente ');
+			}
+
+			if (!this.buscar_arreglo(categoriasAux, categoriaAux)) {
+				categoriasAux.push(categoriaAux);
+
+				this.setState({ categorias: categoriasAux });
+			}
+		}
+	}
+
+	buscar_arreglo(arrCategorias, categoriaBuscar) {
+		return arrCategorias.find(
+			(categoria) => categoria.nom_categoria == categoriaBuscar.nom_categoria
+		);
 	}
 }
 

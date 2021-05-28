@@ -1,3 +1,45 @@
 .img-plato-dashboard {
 	height: 250px;
 }
+
+.dashboard {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(1, 1fr);
+	width: 100%;
+
+	.crearPlato {
+		grid-column: 1/-1;
+	}
+
+	.listaPlatos {
+		grid-column: 1/-1;
+
+		.listado {
+			display: grid;
+			gap: 1rem;
+			grid-template-columns: repeat(1, 1fr);
+
+			.ajustes {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				margin: 1rem;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 750px) {
+	.dashboard {
+		grid-template-columns: repeat(2, 1fr);
+
+		.crearPlato {
+			grid-column: 1/2;
+		}
+
+		.listaPlatos {
+			grid-column: 2/3;
+		}
+	}
+}

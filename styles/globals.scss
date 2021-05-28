@@ -116,6 +116,28 @@ h1.center {
 	cursor: pointer;
 }
 
+.btn-round {
+	border-radius: 1rem;
+	cursor: pointer;
+	margin: 0px 1rem;
+	padding: 0.3rem;
+	background-color: #e1701a;
+}
+
+.categorias {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+
+	.categoria {
+		margin: 1rem;
+		padding: 0.5rem;
+		background-color: #e1701a;
+		border-radius: 1rem;
+	}
+}
+
 .primary-color {
 	/* color */
 }
