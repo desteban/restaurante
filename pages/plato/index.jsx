@@ -16,11 +16,12 @@ class Plato extends Component {
 			nom_plato: '',
 			src: '',
 			costo: '',
-			descripcion: 'Un taco que mas',
+			descripcion: '',
 			categorias: [],
 			categoria: '',
 			listaCategorias: props.listaCategorias,
-			load: true
+			load: true,
+			crear: false
 		};
 	}
 
@@ -76,6 +77,10 @@ class Plato extends Component {
 										name="descripcion"
 										id="descripcion"
 										placeholder="Descripcion"
+										value={this.state.descripcion}
+										onChange={(event) =>
+											this.cambiarEstado(event, 'descripcion')
+										}
 									/>
 								</div>
 
@@ -111,7 +116,10 @@ class Plato extends Component {
 								<div className="categorias">
 									{this.state.categorias.map((categoria) => {
 										return (
-											<div className="categoria">
+											<div
+												className="categoria"
+												key={categoria.nom_categoria}
+											>
 												{categoria.nom_categoria}
 											</div>
 										);
@@ -119,6 +127,13 @@ class Plato extends Component {
 								</div>
 
 								<div className="centro espacio">
+									{this.state.crear ? (
+										<div className="loader">
+											<p>Validando datos</p>
+											<div className="lds-dual-ring"></div>
+										</div>
+									) : null}
+
 									<div
 										className="btn"
 										onClick={() => this.send()}
@@ -162,11 +177,11 @@ class Plato extends Component {
 													</span>
 													<div className="descripcion">
 														<div className="ajustes">
-															<span class="material-icons">
+															<span className="material-icons">
 																delete_outline
 															</span>
 
-															<span class="material-icons">
+															<span className="material-icons">
 																settings
 															</span>
 														</div>
@@ -191,6 +206,11 @@ class Plato extends Component {
 	}
 
 	async componentDidMount() {
+		await this.buscar_platos();
+	}
+
+	async buscar_platos() {
+		this.setState({ load: true });
 		let data;
 
 		await axios
@@ -208,7 +228,33 @@ class Plato extends Component {
 	};
 
 	send() {
-		console.log(this.state);
+		const json = {
+			nom_plato: this.state.nom_plato,
+			src: this.state.src,
+			categorias: this.state.categorias,
+			costo: this.state.costo,
+			descripcion: this.state.descripcion
+		};
+
+		this.setState({ crear: true });
+
+		axios
+			.post(`${this.state.url.api}/platos`, { json })
+			.then((respuesta) => {
+				if (respuesta.data.code == 201) {
+					this.buscar_platos();
+					alert(respuesta.data.mensaje);
+					this.setState({ crear: false });
+				}
+			})
+			.catch((error) => {
+				console.log('error', error);
+				this.setState({ crear: false });
+			});
+	}
+
+	limpiarEstado() {
+		this.setState({ nom_plato: '', src: '', categorias: [], costo: '', descripcion: '' });
 	}
 
 	agregarCategoria() {

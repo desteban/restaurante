@@ -12,7 +12,13 @@ export default async function (req, res) {
 		const { json } = req.body;
 
 		if (json) {
-			const plato = JSON.parse(json);
+			let plato = {};
+
+			try {
+				plato = JSON.parse(json);
+			} catch (error) {
+				plato = json;
+			}
 
 			respuesta = await crear_Palto(plato);
 		}
