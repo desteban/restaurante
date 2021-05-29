@@ -29,6 +29,18 @@ export default function footer() {
 							<a className="black">Agregar Platos al menu</a>
 						</Link>
 					</li>
+
+					<li>
+						<Link href="/pedidos">
+							<a className="black">Pedidos</a>
+						</Link>
+					</li>
+
+					<li>
+						<Link href="/reservas/validar">
+							<a className="black">Validar reserva</a>
+						</Link>
+					</li>
 				</ul>
 			</div>
 

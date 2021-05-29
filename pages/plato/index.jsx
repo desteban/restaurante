@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import axios from 'axios';
 import { url } from '../../services/urls';
+import Head from 'next/head';
 
 import Footer from '../../components/footer';
 import Menu from '../../components/menu';
