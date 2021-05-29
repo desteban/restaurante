@@ -13,13 +13,13 @@ export default async function (req, res) {
 			persona = json;
 		}
 
-		respuesta = await crearPerson(persona);
+		respuesta = await crearPersona(persona);
 	}
 
 	res.status(respuesta.code).json(respuesta);
 }
 
-async function crearPerson(persona = { email: '', nombre: '', apellido: '' }) {
+export async function crearPersona(persona = { email: '', nombre: '', apellido: '' }) {
 	try {
 		let respuesta = await db.query(
 			`INSERT INTO personas (email, nombre, apellido) VALUES (?, ?, ?)`,
