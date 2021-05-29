@@ -5,7 +5,7 @@ import { crearPersona } from '../personas/index';
 export default async function (req, res) {
 	let respuesta = { code: 200, mensaje: 'Todo esta bien' };
 
-	const { json } = req.boy;
+	const { json } = req.body;
 
 	if (req.method == 'POST') {
 		let data;
@@ -20,18 +20,20 @@ export default async function (req, res) {
 		let personadb = await buscarPersona(persona.email);
 
 		if (!personadb.persona.length) {
-			crearPersona(persona);
+			await crearPersona(persona);
 		}
 
-		respuesta.mensaje = 'Que hace';
+		// respuesta.persona = personadb;
+
+		reserva.email = persona.email;
+
+		respuesta = await crearReserva(reserva);
 	}
 
 	res.status(respuesta.code).json(respuesta);
 }
 
-async function crearReserva(
-	reserva = { id_reserva, email: '', id_mesa, fecha, costo, fecha_pago }
-) {
+async function crearReserva(reserva = { id_reserva, email, id_mesa, fecha, costo, fecha_pago }) {
 	try {
 		let respuesta = await db.query(
 			'INSERT INTO reservas (email, id_mesa, fecha) VALUES (?, ?, ?)',
