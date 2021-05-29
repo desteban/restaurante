@@ -19,70 +19,66 @@ CREATE TABLE IF NOT EXISTS platos_categoria(
 	PRIMARY KEY (id_plato, nom_categoria)
 );
 
-CREATE TABLE IF NOT EXISTS documentos(
-	documento VARCHAR(30) NOT NULL UNIQUE PRIMARY KEY
-);
-
 CREATE TABLE IF NOT EXISTS personas (
-	tipo_doc VARCHAR(30) NOT NULL,
-	numero_doc VARCHAR(15) NOT NULL,
+	email VARCHAR(50) NOT NULL PRIMARY KEY UNIQUE NOT NULL,
 	nombre VARCHAR(20) NOT NULL,
-	apellido VARCHAR(20) NOT NULL,
-	FOREIGN KEY (tipo_doc) REFERENCES documentos(documento),
-	PRIMARY KEY (tipo_doc, numero_doc)
+	apellido VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS telefonos (
 	numero_tel VARCHAR(11) NOT NULL UNIQUE,
-	tipo_doc VARCHAR(30) NOT NULL,
-	numero_doc VARCHAR(15) NOT NULL,
-	FOREIGN KEY (tipo_doc, numero_doc) REFERENCES personas(tipo_doc, numero_doc),
-	PRIMARY KEY (numero_tel, tipo_doc, numero_doc)
-);
-
-CREATE TABLE IF NOT EXISTS roles (
-	nombre_rol VARCHAR(45) UNIQUE NOT NULL PRIMARY KEY
+	email VARCHAR(50) NOT NULL,
+	FOREIGN KEY (email) REFERENCES personas(email),
+	PRIMARY KEY (numero_tel, email)
 );
 
 CREATE TABLE IF NOT EXISTS sucursales (
 	id_sucursal INTEGER NOT NULL AUTO_INCREMENT,
 	direccion VARCHAR(50) NOT NULL UNIQUE,
-	mesas INTEGER NOT NULL,
-	mesas_disponibles INTEGER NOT NULL,
-	PRIMARY KEY (id_sucursal, direccion)
+	PRIMARY KEY (id_sucursal)
 );
 
-CREATE TABLE IF NOT EXISTS empleados (
-	tipo_doc VARCHAR(30) NOT NULL UNIQUE,
-	numero_doc VARCHAR(15) NOT NULL UNIQUE,
-	nombre_rol VARCHAR(45) NOT NULL,
-	sueldo DECIMAL(8,2) NOT NULL,
-	id_sucursal INTEGER,
-	direccion VARCHAR(50),
-	psw TEXT NOT NULL COMMENT 'password',
-	FOREIGN KEY (tipo_doc, numero_doc) REFERENCES personas(tipo_doc, numero_doc),
-	FOREIGN KEY (id_sucursal, direccion) REFERENCES sucursales(id_sucursal, direccion),
-	PRIMARY KEY (tipo_doc, numero_doc, nombre_rol)
+CREATE TABLE IF NOT EXISTS mesas (
+	id_mesa INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_sucursal INTEGER NOT NULL,
+	cantidad_sillas INTEGER NOT NULL,
+	cantidad_mesa INTEGER NOT NULL,
+	cantidad_disponible INTEGER NOT NULL,
+	FOREIGN KEY (id_sucursal) REFERENCES sucursales(id_sucursal)
 );
 
 CREATE TABLE IF NOT EXISTS reservas (
-	id_reserva INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	numero_doc VARCHAR(15) NOT NULL, 
-	tipo_doc VARCHAR(30) NOT NULL, 
-	id_sucursal INTEGER NOT NULL,
-	direccion VARCHAR(50) NOT NULL,
+	id_reservas INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	email VARCHAR(50) NOT NULL,
+	id_mesa INTEGER NOT NULL,
 	fecha DATETIME NOT NULL,
-	mesa_reserva INTEGER,
-	FOREIGN KEY (tipo_doc, numero_doc) REFERENCES personas(tipo_doc, numero_doc),
-	FOREIGN KEY (id_sucursal, direccion) REFERENCES sucursales(id_sucursal, direccion)
+	costo DECIMAL(10,2),
+	fecha_pago DATETIME,
+	FOREIGN KEY (id_mesa) REFERENCES mesas(id_mesa),
+	FOREIGN KEY(email) REFERENCES personas(email)
 );
 
-CREATE TABLE IF NOT EXISTS pedido (
-	id_plato INTEGER NOT null,
-	id_reservas INTEGER NOT null,
-	costo DECIMAL(8,2), 
-	fecha_pago DATETIME NOT NULL,
-	FOREIGN KEY (id_reservas) REFERENCES reservas(id_reserva),
-	FOREIGN KEY (id_plato) REFERENCES platos(id_plato),
-	PRIMARY KEY (id_plato, id_reservas)
+CREATE TABLE IF NOT EXISTS pedidos (
+	id_pedido INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	id_reserva INTEGER NOT NULL,
+	id_plato INTEGER NOT NULL,		
+	FOREIGN KEY(id_reserva) REFERENCES reservas(id_reservas),
+	FOREIGN KEY(id_plato) REFERENCES platos(id_plato)
 );
+
+DELIMITER \\
+CREATE TRIGGER `validar_costo`
+AFTER INSERT ON `pedidos`
+	FOR EACH ROW BEGIN
+	
+	/*obtener el costo de los platos*/
+	SET @costototal = (SELECT SUM(platos.costo)
+	FROM pedidos
+	INNER JOIN platos ON pedidos.id_plato = platos.id_plato
+	WHERE pedidos.id_reserva = 1);
+	
+	/*actualizar el costo de las reservas*/
+	UPDATE reservas SET costo=@costototal WHERE reservas.id_reservas = new.id_reserva;
+	
+END\\
+DELIMITER ;
