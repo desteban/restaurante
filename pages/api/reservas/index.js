@@ -20,7 +20,12 @@ export default async function (req, res) {
 		let personadb = await buscarPersona(persona.email);
 
 		if (!personadb.persona.length) {
-			await crearPersona(persona);
+			let nuevaPersona = await crearPersona(persona);
+
+			if (nuevaPersona.code != 201) {
+				respuesta = nuevaPersona;
+				res.status(respuesta.code).json(respuesta);
+			}
 		}
 
 		// respuesta.persona = personadb;
