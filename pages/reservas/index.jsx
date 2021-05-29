@@ -16,7 +16,6 @@ class NuevaReserva extends Component {
 			nombre: '',
 			apellido: '',
 			telefono: '',
-			num_documento: '',
 			email: '',
 			id_mesa: '',
 			url: props.url,
@@ -30,6 +29,31 @@ class NuevaReserva extends Component {
 
 	send = () => {
 		console.log(this.state);
+
+		let reserva = {
+			fecha: this.state.reserva_fecha,
+			id_mesa: this.state.id_mesa
+		};
+
+		let persona = {
+			email: this.state.email,
+			nombre: this.state.nombre,
+			apellido: this.state.apellido
+		};
+
+		const json = { reserva, persona };
+
+		axios
+			.post(`${this.state.url.api}/reservas`, { json })
+			.then((respuesta) => {
+				if (respuesta.data.code == 201) {
+					alert(`Codigo de reserva ${respuesta.data.respuesta.insertId}`);
+				}
+			})
+			.catch((error) => {
+				console.log('Algo salio mal');
+				console.error(error);
+			});
 	};
 
 	Fecha2string = (date = new Date()) => {
