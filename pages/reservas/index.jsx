@@ -4,6 +4,8 @@ import Menu from '../../components/menu';
 import Footer from '../../components/footer';
 import Entrada from '../../components/entrada';
 import Link from 'next/link';
+import axios from 'axios';
+import { url } from '../../services/urls';
 
 class NuevaReserva extends Component {
 	constructor(props) {
@@ -15,7 +17,10 @@ class NuevaReserva extends Component {
 			apellido: '',
 			telefono: '',
 			num_documento: '',
-			email: ''
+			email: '',
+			id_mesa: '',
+			url: props.url,
+			mesas: []
 		};
 	}
 
@@ -51,6 +56,21 @@ class NuevaReserva extends Component {
 		const fecha = event.target.value;
 		this.setState({ reserva_fecha: fecha });
 	};
+
+	async componentDidMount() {
+		await this.buscarMesas();
+	}
+
+	async buscarMesas() {
+		await axios
+			.get(`${this.state.url.api}/mesas`)
+			.then((respuesta) => {
+				this.setState({ mesas: respuesta.data.mesas });
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
 
 	render() {
 		return (
@@ -122,6 +142,25 @@ class NuevaReserva extends Component {
 							min={this.Fecha2string(new Date())}
 						/>
 
+						<div className="input centro">
+							<label htmlFor="idMesa">Tipo de mesa</label>
+							<select
+								name="idMesa"
+								id="idMesa"
+								onChange={(event) => this.cambiarEstado(event, 'id_mesa')}
+							>
+								<option value="">Seleccionar</option>
+
+								{this.state.mesas.map((mesa) => {
+									return (
+										<option value={mesa.id_mesa}>
+											{mesa.cantidad_sillas} Sillas
+										</option>
+									);
+								})}
+							</select>
+						</div>
+
 						<div>
 							<p>
 								Al momento de realizar la reserva aceptas todos los
@@ -141,6 +180,10 @@ class NuevaReserva extends Component {
 			</div>
 		);
 	}
+}
+
+export async function getServerSideProps() {
+	return { props: { url: url } };
 }
 
 export default NuevaReserva;
