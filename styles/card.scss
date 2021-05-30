@@ -1,3 +1,17 @@
+.logo {
+	height: 40px;
+	width: 40px;
+}
+
+.margen {
+	margin: 1rem;
+
+	.sillas {
+		font-size: 1.5rem;
+		margin: 0px 1.5rem;
+	}
+}
+
 .lista-reservas {
 	display: flex;
 	flex-wrap: wrap;
@@ -6,12 +20,23 @@
 .card {
 	grid-column: 1/2;
 	margin: 0.5rem 1rem;
-	border-radius: 1rem;
 	padding: 0.5rem 1rem;
 	border: lightgray solid 1px;
 	width: auto;
 	display: flex;
 	flex-direction: column;
+	transition: all 0.4s;
+
+	&:hover {
+		background-color: #eeeded;
+		border-radius: 1rem;
+	}
+
+	.titulo {
+		font-size: 1.5rem;
+		align-items: center;
+		margin: 0.5rem 0px;
+	}
 }
 
 .menu {

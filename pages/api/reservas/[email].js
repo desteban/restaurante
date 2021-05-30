@@ -15,7 +15,11 @@ export default async function (req, res) {
 async function buscarReserva(email) {
 	try {
 		let reservas = await db.query(
-			'SELECT * FROM reservas WHERE reservas.email = ? AND reservas.fecha_pago IS NULL',
+			`SELECT reservas.id_reservas, reservas.email, reservas.fecha, personas.nombre, personas.apellido, mesas.cantidad_sillas
+			FROM mesas
+			INNER JOIN reservas ON mesas.id_mesa = reservas.id_mesa
+			INNER JOIN personas ON reservas.email = personas.email
+			WHERE reservas.email = ? AND reservas.fecha_pago IS NULL;`,
 			email
 		);
 

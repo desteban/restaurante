@@ -53,9 +53,21 @@ class validarReservas extends Component {
 						<div className="lista-reservas">
 							{this.state.reservas.map((reserva) => {
 								return (
-									<div className="card">
-										<p className="titulo">{reserva.fecha}</p>
-										<p className="contenido">{reserva.email}</p>
+									<div className="card" key={reserva.id_reservas}>
+										<p className="titulo">{`${reserva.nombre} ${reserva.apellido}`}</p>
+
+										<div className="contenido">
+											<p>{reserva.fecha}</p>
+											<p>{reserva.email}</p>
+											<div className="centro margen">
+												<img
+													src="/chair.svg"
+													alt="Sillas"
+													className="logo"
+												/>
+												<p className="sillas">{` ${reserva.cantidad_sillas}`}</p>
+											</div>
+										</div>
 
 										<div className="centro">
 											<span className="material-icons click">done</span>
@@ -77,7 +89,7 @@ class validarReservas extends Component {
 	}
 
 	send() {
-		this.setState({ buscando: true });
+		this.setState({ buscando: true, reservas: [] });
 
 		axios
 			.get(`${this.state.url.api}/reservas/${this.state.email}`)
