@@ -188,7 +188,13 @@ class NuevaReserva extends Component {
 						<div>
 							<p>
 								Al momento de realizar la reserva aceptas todos los
-								<a className="enlace"> terminos y condiciones</a>
+								<a
+									className="enlace"
+									href={`${this.state.url.page}/terminos-y-condiciones`}
+									Target="_blank"
+								>
+									terminos y condiciones
+								</a>
 							</p>
 						</div>
 

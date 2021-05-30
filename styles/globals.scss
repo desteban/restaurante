@@ -199,6 +199,10 @@ h1.center {
 	}
 }
 
+ol > li {
+	margin: 1rem;
+}
+
 @import './card.scss';
 @import './resenas.scss';
 @import './formularios.scss';
