@@ -65,7 +65,7 @@ async function crearReserva(
 
 		await db.end();
 
-		await enviarEmail(respuesta.insertId, reserva.email, nombre);
+		await enviarEmail(respuesta.insertId, reserva.email, nombre, reserva.fecha);
 
 		return { code: 201, mensaje: 'Reserva agregada', respuesta };
 	} catch (error) {
@@ -90,7 +90,7 @@ async function atender(id_reservas, email, fecha_pago) {
 	}
 }
 
-async function enviarEmail(id_reserva, email, nombre) {
+async function enviarEmail(id_reserva, email, nombre, fecha) {
 	try {
 		let testAccount = await nodemailer.createTestAccount();
 
@@ -109,7 +109,7 @@ async function enviarEmail(id_reserva, email, nombre) {
 				from: `Il Ristorante <${process.env.USERMAIL}>`,
 				to: `${email}`,
 				subject: 'Codigo de reserva',
-				text: `Hola ${nombre}, tu codigo de reserva es: ${id_reserva}`
+				text: `Hola ${nombre}, tu codigo de reserva es: ${id_reserva}, la fecha de reserva es: ${fecha}`
 			});
 		});
 	} catch (error) {
