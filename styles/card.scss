@@ -1,3 +1,19 @@
+.lista-reservas {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.card {
+	grid-column: 1/2;
+	margin: 0.5rem 1rem;
+	border-radius: 1rem;
+	padding: 0.5rem 1rem;
+	border: lightgray solid 1px;
+	width: auto;
+	display: flex;
+	flex-direction: column;
+}
+
 .menu {
 	width: 100%;
 	display: grid;
