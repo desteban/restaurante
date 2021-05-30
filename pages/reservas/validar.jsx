@@ -74,7 +74,12 @@ class validarReservas extends Component {
 										</div>
 
 										<div className="centro">
-											<span className="material-icons click">done</span>
+											<span
+												className="material-icons click"
+												onClick={() => this.atender()}
+											>
+												done
+											</span>
 										</div>
 									</div>
 								);
@@ -112,6 +117,10 @@ class validarReservas extends Component {
 				console.log('Algo salio mal');
 				this.setState({ buscando: false });
 			});
+	}
+
+	atender() {
+		console.log('Atendiendo persona');
 	}
 }
 

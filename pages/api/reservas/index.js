@@ -35,6 +35,19 @@ export default async function (req, res) {
 		respuesta = await crearReserva(reserva);
 	}
 
+	if (req.method == 'PUT') {
+		let data;
+
+		try {
+			data = JSON.parse(json);
+		} catch (error) {
+			data = json;
+		}
+
+		// respuesta.data = data;
+		respuesta = await atender(data.id_reservas, data.email, data.fecha_pago);
+	}
+
 	res.status(respuesta.code).json(respuesta);
 }
 
@@ -48,6 +61,21 @@ async function crearReserva(reserva = { id_reserva, email, id_mesa, fecha, costo
 		await db.end();
 
 		return { code: 201, mensaje: 'Reserva agregada', respuesta };
+	} catch (error) {
+		delete error.sql;
+
+		return { code: 400, mensaje: 'Algo salio mal', error };
+	}
+}
+
+async function atender(id_reservas, email, fecha_pago) {
+	try {
+		let respuesta = await db.query(
+			`UPDATE reservas SET fecha_pago = ? WHERE id_reservas = ? AND email=? `,
+			[fecha_pago, id_reservas, email]
+		);
+
+		return { code: 200, mensaje: 'Reserva actualizada', respuesta };
 	} catch (error) {
 		delete error.sql;
 
