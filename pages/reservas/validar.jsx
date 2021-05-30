@@ -76,7 +76,7 @@ class validarReservas extends Component {
 										<div className="centro">
 											<span
 												className="material-icons click"
-												onClick={() => this.atender()}
+												onClick={() => this.atender(reserva)}
 											>
 												done
 											</span>
@@ -119,9 +119,41 @@ class validarReservas extends Component {
 			});
 	}
 
-	atender() {
-		console.log('Atendiendo persona');
+	atender(reserva) {
+		const json = {
+			email: reserva.email,
+			id_reservas: reserva.id_reservas,
+			fecha_pago: this.Fecha2string()
+		};
+
+		this.setState({ buscando: true });
+
+		axios
+			.put(`${this.state.url.api}/reservas`, { json })
+			.then((respuesta) => {
+				alert(respuesta.data.mensaje);
+				this.send();
+			})
+			.catch((error) => {
+				console.log('Algo salio mal');
+				console.log(error);
+			});
 	}
+
+	Fecha2string = (date = new Date()) => {
+		let year = date.getFullYear();
+		let month = date.getMonth() + 1;
+		let day = date.getDate();
+
+		if (month < 10) {
+			month = `0${month}`;
+		}
+
+		if (day < 10) {
+			day = `0${day}`;
+		}
+		return `${year}-${month}-${day}`;
+	};
 }
 
 export async function getServerSideProps() {
