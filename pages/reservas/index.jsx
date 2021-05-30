@@ -19,7 +19,8 @@ class NuevaReserva extends Component {
 			email: '',
 			id_mesa: '',
 			url: props.url,
-			mesas: []
+			mesas: [],
+			load: false
 		};
 	}
 
@@ -28,7 +29,7 @@ class NuevaReserva extends Component {
 	};
 
 	send = () => {
-		console.log(this.state);
+		this.setState({ load: true });
 
 		let reserva = {
 			fecha: this.state.reserva_fecha,
@@ -49,10 +50,12 @@ class NuevaReserva extends Component {
 				if (respuesta.data.code == 201) {
 					alert(`Codigo de reserva ${respuesta.data.respuesta.insertId}`);
 				}
+				this.setState({ load: false });
 			})
 			.catch((error) => {
 				console.log('Algo salio mal');
 				console.error(error);
+				this.setState({ load: false });
 			});
 	};
 
@@ -187,7 +190,7 @@ class NuevaReserva extends Component {
 
 						<div>
 							<p>
-								Al momento de realizar la reserva aceptas todos los
+								Al momento de realizar la reserva aceptas todos los{' '}
 								<a
 									className="enlace"
 									href={`${this.state.url.page}/terminos-y-condiciones`}
@@ -204,6 +207,13 @@ class NuevaReserva extends Component {
 							</div>
 						</div>
 					</form>
+
+					{this.state.load ? (
+						<div className="loader">
+							<p>Reservando...</p>
+							<div className="lds-dual-ring"></div>
+						</div>
+					) : null}
 				</div>
 
 				<Footer />

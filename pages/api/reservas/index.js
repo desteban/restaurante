@@ -2,6 +2,8 @@ import { db } from '../../../services/database';
 import { buscarPersona } from '../personas/[email]';
 import { crearPersona } from '../personas/index';
 
+import nodemailer from 'nodemailer';
+
 export default async function (req, res) {
 	let respuesta = { code: 200, mensaje: 'Todo esta bien' };
 
@@ -32,7 +34,7 @@ export default async function (req, res) {
 
 		reserva.email = persona.email;
 
-		respuesta = await crearReserva(reserva);
+		respuesta = await crearReserva(reserva, persona.nombre);
 	}
 
 	if (req.method == 'PUT') {
@@ -51,7 +53,10 @@ export default async function (req, res) {
 	res.status(respuesta.code).json(respuesta);
 }
 
-async function crearReserva(reserva = { id_reserva, email, id_mesa, fecha, costo, fecha_pago }) {
+async function crearReserva(
+	reserva = { id_reserva, email, id_mesa, fecha, costo, fecha_pago },
+	nombre
+) {
 	try {
 		let respuesta = await db.query(
 			'INSERT INTO reservas (email, id_mesa, fecha) VALUES (?, ?, ?)',
@@ -59,6 +64,8 @@ async function crearReserva(reserva = { id_reserva, email, id_mesa, fecha, costo
 		);
 
 		await db.end();
+
+		await enviarEmail(respuesta.insertId, reserva.email, nombre);
 
 		return { code: 201, mensaje: 'Reserva agregada', respuesta };
 	} catch (error) {
@@ -80,5 +87,33 @@ async function atender(id_reservas, email, fecha_pago) {
 		delete error.sql;
 
 		return { code: 400, mensaje: 'Algo salio mal', error };
+	}
+}
+
+async function enviarEmail(id_reserva, email, nombre) {
+	try {
+		let testAccount = await nodemailer.createTestAccount();
+
+		var transporter = nodemailer.createTransport({
+			host: 'smtp.gmail.com',
+			port: 465,
+			secure: true,
+			auth: {
+				user: process.env.USERMAIL,
+				pass: process.env.PASSMAIL
+			}
+		});
+
+		transporter.verify().then(() => {
+			transporter.sendMail({
+				from: `Il Ristorante <${process.env.USERMAIL}>`,
+				to: `${email}`,
+				subject: 'Codigo de reserva',
+				text: `Hola ${nombre}, tu codigo de reserva es: ${id_reserva}`
+			});
+		});
+	} catch (error) {
+		console.log('No se puede enviar el correo');
+		console.log(error);
 	}
 }
