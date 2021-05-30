@@ -30,6 +30,10 @@ class Plato extends Component {
 	render() {
 		return (
 			<div>
+				<Head>
+					<title>Crear Plato - ilRistorante</title>
+				</Head>
+
 				<Menu />
 
 				<main className="contenido">

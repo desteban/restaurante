@@ -77,7 +77,13 @@ class Home extends Component {
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati id
 							distinctio reprehenderit nam, expedita molestiae voluptate impedit
 							cumque tempora repudiandae autem magnam doloremque rem fuga amet ab
-							cupiditate, numquam modi.
+							cupiditate, numquam modi. Lorem, ipsum dolor sit amet consectetur
+							adipisicing elit. Soluta nisi blanditiis, totam magni rem autem sint
+							quod, accusamus dolore deleniti voluptas incidunt, ex officiis vero
+							corrupti voluptate laborum sit quia! Doloribus quaerat molestias
+							voluptate nemo iusto et deleniti earum placeat cupiditate? Sed excepturi
+							laudantium saepe, repudiandae fugiat illo sit placeat impedit rerum
+							harum dicta deleniti eligendi suscipit amet optio ipsam.
 						</p>
 					</div>
 				</main>

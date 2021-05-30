@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import Footer from '../../components/footer';
 import NavMenu from '../../components/menu';
+import Head from 'next/head';
 
 class validarReservas extends Component {
 	constructor(props) {
@@ -10,6 +11,10 @@ class validarReservas extends Component {
 	render() {
 		return (
 			<div>
+				<Head>
+					<title>Validar Reserva - IlRistorante</title>
+				</Head>
+
 				<NavMenu />
 
 				<main className="contenido"></main>
