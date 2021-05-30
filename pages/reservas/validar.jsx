@@ -28,6 +28,7 @@ class validarReservas extends Component {
 				<main className="contenido">
 					<div>
 						<Entrada
+							label="Correo electronico"
 							name="email"
 							id="email"
 							placeholder="Correo electronico"
@@ -54,7 +55,10 @@ class validarReservas extends Component {
 							{this.state.reservas.map((reserva) => {
 								return (
 									<div className="card" key={reserva.id_reservas}>
-										<p className="titulo">{`${reserva.nombre} ${reserva.apellido}`}</p>
+										<p className="titulo centro">{`${reserva.nombre} ${reserva.apellido}`}</p>
+										<p className="titulo centro">
+											ID: {`${reserva.id_reservas}`}
+										</p>
 
 										<div className="contenido">
 											<p>{reserva.fecha}</p>
