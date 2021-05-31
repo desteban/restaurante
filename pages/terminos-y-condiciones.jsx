@@ -11,6 +11,8 @@ export default function () {
 					name="description"
 					content="Conoce todos los términos y condiciones de nuestra pagina web para poder brindarte nuestro mejor servicio"
 				/>
+
+				<meta name="author" content="Sergio Andres Blanco Garcia" />
 			</Head>
 
 			<NavMenu />

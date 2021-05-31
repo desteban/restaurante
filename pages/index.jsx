@@ -29,6 +29,12 @@ class Home extends Component {
 						content="restaurantes, comida mexicana, ristorante, il ristorante"
 					/>
 					<meta name="robots" content="index" />
+
+					<meta
+						name="author"
+						content="Sergio Andrés Blanco García​, Nicolas Santiago Sosa Jimenez, David Esteban Cubillos Giraldo​, Laura Juliana Rodriguez Castaño
+"
+					/>
 				</Head>
 
 				<Menu />
