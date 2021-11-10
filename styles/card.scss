@@ -44,9 +44,6 @@
 	display: grid;
 	grid-template-columns: repeat(1, 1fr);
 	gap: 0.5rem;
-	// display: flex;
-	// flex-direction: row;
-	// flex-wrap: wrap;
 }
 
 .card_menu {
@@ -57,7 +54,6 @@
 	margin: 0.5rem 1rem;
 	border-radius: 1rem;
 	border: lightgray solid 1px;
-	// border-left: none;
 	color: black;
 	overflow: hidden;
 

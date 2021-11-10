@@ -222,6 +222,10 @@ div.center {
 	justify-content: center;
 }
 
+.hide {
+	display: none;
+}
+
 @import './card.scss';
 @import './resenas.scss';
 @import './formularios.scss';

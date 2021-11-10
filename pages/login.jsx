@@ -15,23 +15,27 @@ class Login extends Component {
 			<div className="col-2">
 				<div className="login">
 					<h1>Iniciar sesion</h1>
-					<Entrada
-						label="Correo electronico"
-						id="email"
-						placeholder="Correo electronico"
-						type="email"
-						value={this.state.email}
-						onChange={(event) => {
-							this.cambiarEstado(event, 'email');
-						}}
-					/>
-					<div className="btn-round center">Enviar Correo</div>
+					<div className="step1">
+						<Entrada
+							label="Correo electronico"
+							id="email"
+							placeholder="Correo electronico"
+							type="email"
+							value={this.state.email}
+							onChange={(event) => {
+								this.cambiarEstado(event, 'email');
+							}}
+						/>
+						<div className="btn-round center">Enviar Correo</div>
 
-					<div className="tohome">
-						<Link href="/">
-							<a>Inicio</a>
-						</Link>
+						<div className="tohome">
+							<Link href="/">
+								<a>Inicio</a>
+							</Link>
+						</div>
 					</div>
+
+					<div className="step2 hide"></div>
 				</div>
 			</div>
 		);
