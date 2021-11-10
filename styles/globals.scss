@@ -114,14 +114,28 @@ h1.center {
 	padding: 0.5rem;
 	border: solid 1px #aeaeae;
 	cursor: pointer;
+
+	&:hover {
+		transform: scale(1.1);
+	}
+}
+
+.round {
+	border-radius: 1rem;
 }
 
 .btn-round {
 	border-radius: 1rem;
+	border: none;
 	cursor: pointer;
 	margin: 0px 1rem;
 	padding: 0.3rem;
 	background-color: #e1701a;
+	transition: all 0.4s;
+
+	&:hover {
+		transform: scale(1.1);
+	}
 }
 
 .categorias {
@@ -203,9 +217,15 @@ ol > li {
 	margin: 1rem;
 }
 
+div.center {
+	display: flex;
+	justify-content: center;
+}
+
 @import './card.scss';
 @import './resenas.scss';
 @import './formularios.scss';
 @import './footer.scss';
 @import './nav.scss';
 @import './dashboard.scss';
+@import './login.scss';

@@ -35,10 +35,18 @@ export default function footer() {
 							<a className="black">Pedidos</a>
 						</Link>
 					</li>
+				</ul>
 
+				<ul>
 					<li>
 						<Link href="/reservas/validar">
 							<a className="black">Validar reserva</a>
+						</Link>
+					</li>
+
+					<li>
+						<Link href="/login">
+							<a className="black">Ingresar</a>
 						</Link>
 					</li>
 				</ul>

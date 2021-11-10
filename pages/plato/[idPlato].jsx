@@ -114,6 +114,10 @@ const plato = ({ plato }) => {
 					background: rgb(240, 70, 50);
 					border-radius: 1rem;
 				}
+
+				.resenas {
+					display: none;
+				}
 			`}</style>
 
 			<Head>
